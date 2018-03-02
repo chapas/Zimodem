@@ -100,7 +100,7 @@ const char compile_date[] = __DATE__ " " __TIME__;
 #else
 # define debugPrintf doNothing
 # define DEFAULT_BAUD_RATE 1200
-# define DEFAULT_FCT FCT_RTSCTS
+//# define DEFAULT_FCT FCT_RTSCTS
 # define DEFAULT_PIN_DSR 13
 # define DEFAULT_PIN_DTR 12
 # define DEFAULT_PIN_RI 14
@@ -108,6 +108,7 @@ const char compile_date[] = __DATE__ " " __TIME__;
 # define DEFAULT_PIN_CTS 5
 # define DEFAULT_PIN_DCD 2
 #ifdef COCOWIFI /* Standard RS-232 levels */
+# define DEFAULT_FCT FCT_DISABLED
 # define DEFAULT_DCD_HIGH  LOW
 # define DEFAULT_DCD_LOW  HIGH
 # define DEFAULT_CTS_HIGH  LOW
