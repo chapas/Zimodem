@@ -96,7 +96,7 @@ void ZCommand::setConfigDefaults()
   if(pinSupport[pinRTS])
     pinMode(pinRTS,OUTPUT);
   if(pinSupport[pinCTS])
-    pinMode(pinCTS,INPUT);
+    pinMode(pinCTS,INPUT); //CTS
   if(pinSupport[pinDCD])
     pinMode(pinDCD,OUTPUT);
   if(pinSupport[pinDTR])
@@ -105,7 +105,7 @@ void ZCommand::setConfigDefaults()
     pinMode(pinDSR,OUTPUT);
   if(pinSupport[pinRI])
     pinMode(pinRI,OUTPUT);
-  if(pinSupport[pinRTS])
+  if(pinSupport[pinRTS]) //RTS
     digitalWrite(pinRTS,rtsActive);
   if(pinSupport[pinDCD])
     digitalWrite(pinDCD,dcdStatus);
@@ -246,8 +246,8 @@ void ZCommand::reSaveConfig()
   File f = SPIFFS.open("/zconfig.txt", "w");
   const char *eoln = EOLN.c_str();
   int dcdMode = pinModeCoder(dcdActive, dcdInactive, DEFAULT_DCD_HIGH);
-  int ctsMode = pinModeCoder(ctsActive, ctsInactive, DEFAULT_CTS_HIGH);
-  int rtsMode = pinModeCoder(rtsActive, rtsInactive, DEFAULT_RTS_HIGH);
+  int ctsMode = pinModeCoder(ctsActive, ctsInactive, DEFAULT_CTS_HIGH); //CTS
+  int rtsMode = pinModeCoder(rtsActive, rtsInactive, DEFAULT_RTS_HIGH); //RTS
   int riMode = pinModeCoder(riActive, riInactive, DEFAULT_RTS_HIGH);
   int dtrMode = pinModeCoder(dtrActive, dtrInactive, DEFAULT_DTR_HIGH);
   int dsrMode = pinModeCoder(dsrActive, dsrInactive, DEFAULT_DSR_HIGH);
@@ -335,19 +335,19 @@ void ZCommand::setOptionsFromSavedConfig(String configArguments[])
   }
   if(pinSupport[pinDCD])
     digitalWrite(pinDCD,dcdStatus);
-  if(configArguments[CFG_CTSPIN].length()>0)
+  if(configArguments[CFG_CTSPIN].length()>0) //CTS
   {
     pinCTS = atoi(configArguments[CFG_CTSPIN].c_str());
     if(pinSupport[pinCTS])
       pinMode(pinCTS,INPUT);
   }
-  if(configArguments[CFG_RTSPIN].length()>0)
+  if(configArguments[CFG_RTSPIN].length()>0)  //RTS
   {
     pinRTS = atoi(configArguments[CFG_RTSPIN].c_str());
     if(pinSupport[pinRTS])
       pinMode(pinRTS,OUTPUT);
   }
-  if(pinSupport[pinRTS])
+  if(pinSupport[pinRTS])  
     digitalWrite(pinRTS,rtsActive);
   if(configArguments[CFG_RIPIN].length()>0)
   {

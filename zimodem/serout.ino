@@ -33,12 +33,10 @@ static void hwSerialFlush()
 
 static void serialOutDeque()
 {
-#ifdef ZIMODEM_ESP32
-  if(TBUFhead != TBUFtail)
-#else
+
   if((TBUFhead != TBUFtail)
   &&(HWSerial.availableForWrite()>=SER_BUFSIZE))
-#endif
+
   {
     serialDirectWrite(TBUF[TBUFhead]);
     TBUFhead++;
@@ -153,6 +151,7 @@ bool ZSerial::isSerialOut()
 
 bool ZSerial::isSerialCancelled()
 {
+  //Should just need to comment this out....
   if(flowControlType == FCT_RTSCTS)
   {
     if(pinSupport[pinCTS])

@@ -225,7 +225,7 @@ void ZStream::loop()
         {
           for(int i=0;(i<bytesAvailable) && (current->available()>0);i++)
           {
-            if(serial.isSerialCancelled())
+            if(serial.isSerialCancelled()) // Hardware Flow Check
               break;
             uint8_t c=current->read();
             logSocketIn(c);
