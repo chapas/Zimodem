@@ -9,7 +9,8 @@
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
    You may obtain a copy of the License at
-
+   
+   http://www.apache.org/licenses/LICENSE-2.0
 
    Unless required by applicable law or agreed to in writing, software
    distributed under the License is distributed on an "AS IS" BASIS,
@@ -33,7 +34,7 @@ const char compile_date[] = __DATE__ " " __TIME__;
 #endif
 
 
-#define UPDATE_URL   ""
+#define UPDATE_URL   " "
 // Must have %s where the version string will go.
 #define UPDATE_FILE  "/files/zimodem/zimodem.ino."BOARD_NAME"-%s.bin"
 #define VERSION_FILE "/files/zimodem/zimodem-latest-version.txt"
